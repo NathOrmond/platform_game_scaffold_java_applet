@@ -2,11 +2,21 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Ball {
+	
+	/**
+	 ** CHALLENGE  : 
+	 * 
+	 * i) change the gravity variable so 
+	 * the ball falls with "realistic" acceleration.
+	 * 
+	 * 
+	 * ii) change the colour of the ball.
+	 */
 
 	private double dx = 0;
 	private double dy = 0;
 	private int radius = 20;
-	private double gravity = 15;
+	private double gravity = 2;
 	private double energyLoss = 1;
 	private double dt = .2;
 	private double xFriction = .9;
@@ -14,29 +24,46 @@ public class Ball {
 	private int y = radius + 1;
 	private double gameDy = -80;
 
+	/**
+	 * constructor if parameters not defined 
+	 */
+	
 	public Ball() {
-
+		
 	}
+	
+	/**
+	 * constructor with parameters given
+	 */
 
 	public Ball(int i, int j) {
-		// TODO Auto-generated constructor stub
 		x = i;
 		y = j;
 	}
-
 	
-		
+	/**
+	 * changes dx to +3 (to the right)
+	 */
+
 	public void moveRight() {
 		if (dx + 1 < 20) {
 			dx += 3;
 		}
 	}
+	
+	/**
+	 * changes dx to -3 (to the left)
+	 */
 
 	public void moveLeft() {
 		if (dx - 1 > -20) {
 			dx -= 3;
 		}
 	}
+	
+	/**
+	 * updates the ball graphics location within window
+	 */
 
 	public void update(StartingPoint sp) {
 		if (x + dx > sp.getWidth() - radius - 1) {
@@ -66,6 +93,10 @@ public class Ball {
 			y += dy * dt + .5 * gravity * dt * dt;
 		}
 	}
+	
+	/**
+	 * paints the ball graphic
+	 */
 
 	public void paint(Graphics g) {
 		g.setColor(Color.GREEN);
@@ -73,11 +104,11 @@ public class Ball {
 
 	} 
 
-
 	
-	/**
-	 * GETTERS AND SETTERS
-	 */
+	/****************************************
+	 * VARIABLE GETTER AND SETTERS
+	 ****************************************/
+
 		public int getX() {
 			return x;
 		}

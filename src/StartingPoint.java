@@ -8,44 +8,46 @@ import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class StartingPoint extends Applet implements Runnable, KeyListener {
-
-	/** 
-	 * INITIALISATION
+	
+	/**
+	 * CHALLENGE  : 
+	 * 
+	 * i) make the size fo the window when the programme 
+	 * 	  runs bigger
+	 * 
+	 * ii) increase the number of platforms to 8	
 	 */
 
 	private Image i;
 	private Graphics doubleG;
 	Ball b;
-	Platform p[] = new Platform[7];
+	private int numPlatforms = 7;
+	Platform p[] = new Platform[numPlatforms];
 
+	/**
+	 * Initialisation : 
+	 * Defines window size. 
+	 * Makes thuis class listen for KeyEvents.
+	 */
 	@Override
 	public void init() {
 		setSize(800, 600);
 		addKeyListener(this);
-
 	}
 
 	@Override
 	public void start() {
-
 		b = new Ball();
 		for (int i = 0; i < p.length; i++) {
 			Random r = new Random();
 			p[i] = new Platform(getWidth() + 200 * i, getHeight() - 40 - r.nextInt(400));
 		}
-
 		Thread thread = new Thread(this);
 		thread.start();
-
 	}
-
-	/** 
-	 *  THREAD
-	 */
 	
 	@Override
 	public void run() {
-		// thread information
 		while (true) {
 			b.update(this);
 			for (int i = 0; i < p.length; i++) {
@@ -59,23 +61,22 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 			}
 		}
 	}
-
 	
 	@Override
 	public void stop() {
-
+		//not used
 	}
 
 	
 	@Override
 	public void destroy() {
-
+		// not used
 	}
 
 
-	/**
-	 * GRAPHICS METHODS
-	 */
+	/****************************************
+	 * GRAPHICS 
+	 ****************************************/
 
 	@Override
 	public void update(Graphics g) {
@@ -104,30 +105,27 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	}
 
 
-	/** 
+	/****************************************
 	 * KEY LISTENERS
-	 */
+	 ****************************************/
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
+			//MOVES BALL LEFT
 			b.moveLeft();
 			break;
 
 		case KeyEvent.VK_RIGHT:
+			//MOVES BALL RIGHT
 			b.moveRight();
 			break;
 		}
 
 	}
 
-	
-	/** 
-	 * UNUSED OVERRIDEN METHODS
-	 */
-	
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// not used

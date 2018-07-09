@@ -8,7 +8,6 @@ public class Platform {
 	private int x, y, width, height;
 
 	public Platform() {
-
 		dx = -1;
 		x = 300;
 		y = 300;
@@ -35,7 +34,6 @@ public class Platform {
 	}
 
 	private void checkForCollision(Ball b) {
-		// TODO Auto-generated method stub
 		int ballX = b.getX();
 		int ballY = b.getY();
 		int radius = b.getRadius();
